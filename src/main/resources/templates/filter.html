@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>大园子的博客</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" media="screen"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <script src="/js/jquery-1.10.2.min.js"/>
+    <script src="/bootstrap/js/bootstrap.min.js"/>
+    <script src="/js/doliao.js"/>
+    <script src="/js/blog/filter.js"/>
+</head>
+<body>
+<div class="body-content">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="tag-content">
+                <div class="person-info">
+                    <ul>
+                        <li><a href="/"><img src="/img/logo.png"/></a></li>
+                        <br/>
+                        <li><span class="fa fa-smile-o"/> 大园子的博客</li>
+                        <li><span class="fa fa-qq"/> 784589080</li>
+                        <li><span class="fa fa-envelope"></span> eoooxy@163.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>分类</span><a class="fa fa-bars" style="float: right"/>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li th:each="o:${typeVos}">
+                            <a th:onclick="'filterType(\''+${o.name}+'\')'" th:text="${o.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>日期归档</span><a class="fa fa-bars" style="float: right"/>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li th:each="o:${fileVos}">
+                            <a th:onclick="'filterTime(\''+${o.filetime}+'\')'"
+                               th:text="${o.filetime}+' ('+ ${o.num}+')'"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>标签</span>
+                </div>
+                <div class="panel-body">
+                    <ul class="tag">
+                        <li th:each="o:${tagVos}">
+                            <a class="label label-default" th:onclick="'filterTag(\''+${o.name}+'\')'"
+                               th:text="${o.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" id="article">
+            <div class="col-md-12 article-content">
+                <h4><span class="fa fa-list"/> <span th:text="${artFilterVo.title}"/></h4>
+            </div>
+            <div class="col-md-12 article-content">
+                <table class="col-md-12 table table-striped" id="filter-table">
+                    <tr th:onclick="'article(\''+${o.recid}+'\')'" th:each="o:${artFilterVo.voList}">
+                        <td class="col-md-1" style="text-align: center">
+                            <span class="fa fa-chevron-circle-right"/>
+                        </td>
+                        <td class="col-md-8 "><span th:text="${o.title}"></span></td>
+                        <td class="col-md-3 ">
+                            <span class="fa fa-calendar"/> <label th:text="${o.createtime}"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12  git-link">
+            <hr/>
+            <a href="https://github.com/eoooxy" target="_blank"><span class="fa fa-github fa-3x"></span></a>
+        </div>
+    </div>
+</div>
+<script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" zIndex="-1" count="200"/>
+</body>
+</html>

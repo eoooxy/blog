@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.CommentPoMapper">
+    <resultMap id="BaseResultMap" type="com.doliao.po.CommentPo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="recid" jdbcType="INTEGER" property="recid"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="msg" jdbcType="VARCHAR" property="msg"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+    </resultMap>
+
+    <select id="getCommentsByArtId" parameterType="java.lang.Integer" resultType="com.doliao.vo.CommentVo">
+	SELECT
+	t1.*, t2.username
+FROM
+	blog_msg t1
+LEFT JOIN blog_user t2 ON t1.userid = t2.recId
+WHERE
+	t1.recid not IN(
+		SELECT
+			msgid
+		FROM
+			blog_article_msg t3
+		WHERE
+			t3.articleid != #{articleid,jdbcType=INTEGER}
+		)
+ORDER BY
+	t1.createtime DESC
+    </select>
+</mapper>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>大园子的博客</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" media="screen"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/back.css"/>
+    <script src="/js/jquery-1.10.2.min.js"/>
+    <script src="/bootstrap/js/bootstrap.min.js"/>
+    <script src="/js/doliao.js"/>
+    <script src="/js/blog/back.js"/>
+    <script src="/wangEditor-3.0.4/release/wangEditor.js"/>
+</head>
+<body>
+<div class="body-content">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="tag-content">
+                <div class="person-info">
+                    <ul>
+                        <li><a href="../"><img src="/img/logo.png"/></a></li>
+                        <br/>
+                        <li>操作系统</li>
+                        <li><label th:text="${loginInfo.os}"/></li>
+                        <li>本次登陆</li>
+                        <li><label th:text="${loginInfo.currenttime}"/></li>
+                        <li>上次登陆</li>
+                        <li><label th:text="${loginInfo.lasttime}"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>操作</span>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li><span class="fa fa-pencil"/><a onclick="addArticle()"> 新的随笔</a></li>
+                        <li><span class="fa fa-folder"/><a onclick="typeList()"> 查看分类</a></li>
+                        <li><span class="fa fa-tags"/><a onclick="tagList()"> 查看标签</a></li>
+                        <li><span class="fa fa-file-text-o"/><a onclick="articles()"> 文章管理</a></li>
+                        <li><span class="fa fa-cog"/><a onclick="sets()"> 个人设置</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" id="card">
+            <div class="tag-content">
+                <input hidden="hidden" id="createtime" th:value="${articleVo.createtime}"/>
+                <input class="article-title" id="article-title" th:value="${articleVo.title}"/>
+            </div>
+            <div class="edit-tools" style="padding-top: 15px">
+                <div id="edit-bar" class="toolbar"/>
+                <div style="color: #000">
+                    <hr/>
+                </div>
+                <div id="edit-area" class="text" style="height: 550px;margin-top: -20px;"
+                     th:utext="${articleVo.content}"/>
+                <div class="panel-heading edit-plus">
+                    <span>常用选项</span>
+                </div>
+                <div class="panel-body" style="min-height: 150px">
+                    <div class="col-md-12">
+                        <div class="col-md-2">文章类型:</div>
+                        <div class="col-md-10">
+                            <div class="col-md-4" th:each="type:${typeVos}">
+                                <input type="checkbox" name="checkType" th:value="${type.recid}"
+                                       th:checked="${#lists.contains(articleVo.types,type.name)}"/>
+                                <label th:text="'   '+${type.name}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr/>
+                        <div class="col-md-2">文章标签:</div>
+                        <div class="col-md-10">
+                            <div class="col-md-3" th:each="tag:${tagVos}">
+                                <input type="checkbox" name="checkTag" th:value="${tag.recid}"
+                                       th:checked="${#lists.contains(articleVo.tags,tag.name)}"/>
+                                <label th:text="'   '+${tag.name}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-default" style="float: right;margin-top: 10px;margin-left: 10px;"
+                   th:onclick="'saveArc(\''+${articleVo.recid}+'\')'">保存</a>
+                <a class="btn btn-default" style="float: right;margin-top: 10px;margin-left: 10px;"
+                   th:onclick="'saveDraftArc(\''+${articleVo.recid}+'\')'">存为草稿</a>
+                <label hidden="hidden" id="save-tip"
+                       style="color: red;float:right;line-height: 50px;">保存成功,正在跳转到文章页……</label>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#edit-bar', '#edit-area')
+    editor.customConfig.uploadImgShowBase64 = true  // 使用 base64 保存图片
+    // 或者 var editor = new E( document.getElementById('#editor') )
+    editor.create()
+</script>
+</html>

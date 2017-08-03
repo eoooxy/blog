@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>大园子的博客</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" media="screen"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/back.css"/>
+    <script src="/js/jquery-1.10.2.min.js"/>
+    <script src="/bootstrap/js/bootstrap.min.js"/>
+    <script src="/js/doliao.js"/>
+    <script src="/js/blog/back.js"/>
+    <script src="/wangEditor-3.0.4/release/wangEditor.js"/>
+</head>
+<body>
+<div class="body-content">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="tag-content">
+                <div class="person-info">
+                    <ul>
+                        <li><a href="../"><img src="/img/logo.png"/></a></li>
+                        <br/>
+                        <li>操作系统</li>
+                        <li><label th:text="${loginInfo.os}"/></li>
+                        <li>本次登陆</li>
+                        <li><label th:text="${loginInfo.currenttime}"/></li>
+                        <li>上次登陆</li>
+                        <li><label th:text="${loginInfo.lasttime}"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>操作</span>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li><span class="fa fa-pencil"/><a onclick="addArticle()"> 新的随笔</a></li>
+                        <li><span class="fa fa-folder"/><a onclick="typeList()"> 查看分类</a></li>
+                        <li><span class="fa fa-tags"/><a onclick="tagList()"> 查看标签</a></li>
+                        <li><span class="fa fa-file-text-o"/><a onclick="articles()"> 文章管理</a></li>
+                        <li><span class="fa fa-cog"/><a onclick="sets()"> 个人设置</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-12 tag-content">
+                <div class="panel-heading">
+                    <h3>全部文章管理</h3>
+                </div>
+                <div class="panel-body" style="text-align: left">
+                    <table class="col-md-12 table table-striped">
+                        <tr th:each="o:${pageInfo.list}">
+                            <td class="col-md-9" style="line-height: 30px"><label th:text="${o.title}"/></td>
+                            <td class="col-md-3">
+                                <a class="btn btn-default" th:onclick="'editArc(\''+${o.recid}+'\')'">
+                                    <span class="fa fa-edit"/>编辑</a>
+                                <a class="btn btn-default" th:if="${o.status==1}"
+                                   th:onclick="'delArc(\''+${o.recid}+'\')'">
+                                    <span class="fa fa-times"/> 删除</a>
+                                <a class="btn btn-default" th:if="${o.status==0}"
+                                   th:onclick="'showArc(\''+${o.recid}+'\')'">
+                                    <span class="fa fa-plus-square-o"/> 发布</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12  content-page">
+                <a th:class="${pageInfo.hasPreviousPage}?'btn btn-default':'btn btn-default disabled'"
+                   th:onclick="'flushPage(\''+${pageInfo.prePage}+'\')'" th:text="上一页"></a>
+                <span th:text="${pageInfo.pageNum}+'/'+${pageInfo.pages}"></span>
+                <a th:class="${pageInfo.hasNextPage}?'btn btn-default':'btn btn-default disabled'"
+                   th:onclick="'flushPage(\''+${pageInfo.nextPage}+'\')'" th:text="下一页"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

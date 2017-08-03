@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.ArticleTagPoMapper">
+    <resultMap id="BaseResultMap" type="com.doliao.po.ArticleTagPo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="recid" jdbcType="INTEGER" property="recid"/>
+        <result column="tagid" jdbcType="INTEGER" property="tagid"/>
+        <result column="articleid" jdbcType="INTEGER" property="articleid"/>
+    </resultMap>
+
+    <delete id="delArticleTagByArtId" parameterType="java.lang.Integer">
+    DELETE  from blog_article_tag where articleid =#{articleid,jdbcType=INTEGER}
+    </delete>
+</mapper>

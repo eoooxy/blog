@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.TagPoMapper">
+    <resultMap id="BaseResultMap" type="com.doliao.po.TagPo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="recid" jdbcType="INTEGER" property="recid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="updatetime" jdbcType="VARCHAR" property="updatetime"/>
+    </resultMap>
+
+    <select id="getTagByArtId" parameterType="java.lang.Integer" resultType="java.lang.String">
+
+    select name from
+    blog_tag
+    where
+    recid in (select tagid from  blog_article_tag  where articleid = #{article,jdbcType=INTEGER})
+  </select>
+</mapper>

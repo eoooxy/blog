@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.ArticlePoMapper">
+    <resultMap id="BaseResultMap" type="com.doliao.po.ArticlePo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="recid" jdbcType="INTEGER" property="recid"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="updatetime" jdbcType="VARCHAR" property="updatetime"/>
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <select id="getArticles" resultMap="BaseResultMap">
+    select * from blog_article  where status = 1 order by recid desc
+  </select>
+
+    <select id="getAllArticle" resultMap="BaseResultMap">
+        select * from blog_article order by recid desc
+    </select>
+
+    <select id="getArticle" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select * from blog_article  where  recid = #{recid,jdbcType=INTEGER}
+    </select>
+
+    <select id="filterTypeArts" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select t1.* from
+        blog_article t1,
+        blog_article_type t2,
+        blog_type t3
+        where t1.recid = t2.articleid
+        and t2.typeid = t3.recid
+        and t3.`name` = #{keywords,jdbcType=VARCHAR}
+        and t1.`status` = 1
+        GROUP BY t1.recid
+        order by t1.recid desc
+    </select>
+
+    <select id="filterTimeArts" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from blog_article t1
+        where SUBSTR(t1.createtime FROM 1 FOR 7) = #{keywords,jdbcType=VARCHAR}
+        order by t1.recid desc
+    </select>
+
+    <select id="filterTagArts" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select t1.* from
+        blog_article t1,
+        blog_article_tag t2,
+        blog_tag t3
+        where t1.recid = t2.articleid
+        and t2.tagid = t3.recid
+        and t3.`name` = #{keywords,jdbcType=VARCHAR}
+        and t1.`status` = 1
+        GROUP BY t1.recid
+        order by t1.recid desc
+    </select>
+
+    <insert id="insertArticle" parameterType="com.doliao.po.ArticlePo" useGeneratedKeys="true" keyProperty="recid">
+        INSERT INTO blog_article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="recid != null">
+                recid,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="recid != null">
+                #{recid,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="delAndShowArt" parameterType="com.doliao.po.ArticlePo">
+        update blog_article set status = #{status,jdbcType=INTEGER} where recid =  #{recid,jdbcType=INTEGER}
+    </update>
+</mapper>

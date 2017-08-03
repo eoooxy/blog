@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.UserPoMapper">
+  <resultMap id="BaseResultMap" type="com.doliao.po.UserPo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="recId" jdbcType="INTEGER" property="recid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat" jdbcType="INTEGER" property="wechat" />
+    <result column="oicq" jdbcType="INTEGER" property="oicq" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="lasttime" jdbcType="VARCHAR" property="lasttime" />
+  </resultMap>
+</mapper>

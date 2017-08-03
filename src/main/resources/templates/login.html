@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录</title>
+</head>
+<link rel="shortcut icon" type="image/x-icon" href="/img/logo.png" media="screen"/>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="/css/login.css"/>
+<script src="/js/jquery-1.10.2.min.js"/>
+<script src="/bootstrap/js/bootstrap.min.js"/>
+<script src="/js/doliao.js"/>
+<script src="/js/blog/login.js"/>
+<body onkeyup="key_login()">
+<div class="container">
+    <h2 class="signin-heading">后台登录</h2>
+    <div class="div-signin">
+        <input id="username" name="username" class="form-control" placeholder="输入账号"/>
+        <input type="password" id="password" name="password" class="form-control" placeholder="输入密码"/>
+        <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="button" onclick="login()">登录</button>
+    </div>
+</div>
+</body>
+</html>

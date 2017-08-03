@@ -1,0 +1,96 @@
+body, html {
+    background-color: #ccc;
+    font-family: Ayuthaya;
+}
+
+.body-content {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.article-content {
+    border-radius: 10px;
+    margin-top: 25px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.article-content a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
+.tag-content {
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.edit-tools {
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 25px;
+}
+
+.person-info {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.tag-content li {
+    list-style: none;
+    padding-top: 5px;
+}
+
+.tag-content a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+}
+
+.tag-content a:hover {
+    color: #ccc;
+}
+
+.tag-content ul {
+    margin-left: -40px;
+}
+
+.tag-title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #e0e0e0;
+    text-align: center;
+    font-size: 15px;
+}
+
+.article-title {
+    border-radius: 10px;
+    width: 100%;
+    line-height: 30px;
+    outline: none;
+    border: none;
+    padding: 5px 5px 5px 20px;
+    font-size: 16px;
+}
+
+.edit-plus {
+    background-color: #e0e0e0;
+    font-size: 15px;
+    text-align: left;
+}
+
+#typename {
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+
+.content-page {
+    margin-top: 20px;
+    text-align: right;
+}

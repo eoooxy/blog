@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.utils.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}"/>
+
+        <javaModelGenerator targetPackage="com.doliao.po" targetProject="src/main/java"/>
+
+
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources"/>
+
+
+        <javaClientGenerator targetPackage="com.doliao.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+<!--
+        <table tableName="authority" domainObjectName="AuthorityDao">
+            &lt;!&ndash;这边默认的主键为自增的方式 所以在设计数据的时候要匹配&ndash;&gt;
+            <generatedKey column="authority_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="ramapped" domainObjectName="RAMappedDao">
+            <generatedKey column="ra_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="user" domainObjectName="UserDao">
+            <generatedKey column="user_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="menu" domainObjectName="MenuDao">
+            <generatedKey column="menu_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="urmapped" domainObjectName="URMappedDao">
+            <generatedKey column="ur_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="sources" domainObjectName="SourcesDao">
+            <generatedKey column="sources_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="role" domainObjectName="RoleDao">
+            <generatedKey column="role_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+       -->
+
+        <table tableName="blog_article" domainObjectName="ArticlePo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_links" domainObjectName="LinksPo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_msg" domainObjectName="CommentPo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_type" domainObjectName="TypePo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_user" domainObjectName="UserPo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_tag" domainObjectName="TagPo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_article_tag" domainObjectName="ArticleTagPo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="blog_article_type" domainObjectName="ArticleTypePo">
+            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
