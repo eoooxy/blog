@@ -11,6 +11,7 @@
     <script src="/bootstrap/js/bootstrap.min.js"/>
     <script src="/js/doliao.js"/>
     <script src="/js/blog/article.js"/>
+    <!--<script src="/wangEditor-3.0.4/release/wangEditor.js"/>-->
 </head>
 <body>
 <div class="body-content">
@@ -41,19 +42,6 @@
             </div>
             <div class="tag-content">
                 <div class="panel-heading tag-title">
-                    <span>日期归档</span><a class="fa fa-bars" style="float: right"/>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <li th:each="o:${fileVos}">
-                            <a th:onclick="'filterTime(\''+${o.filetime}+'\')'"
-                               th:text="${o.filetime}+' ('+ ${o.num}+')'"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="tag-content">
-                <div class="panel-heading tag-title">
                     <span>标签</span>
                 </div>
                 <div class="panel-body">
@@ -61,6 +49,19 @@
                         <li th:each="o:${tagVos}">
                             <a class="label label-default" th:onclick="'filterTag(\''+${o.name}+'\')'"
                                th:text="${o.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>日期归档</span><a class="fa fa-bars" style="float: right"/>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li th:each="o:${fileVos}">
+                            <a th:onclick="'filterTime(\''+${o.filetime}+'\')'"
+                               th:text="${o.filetime}+' ('+ ${o.num}+')'"></a>
                         </li>
                     </ul>
                 </div>
@@ -81,7 +82,8 @@
                         </label>
                         <label th:if="${not #lists.isEmpty(article.tags)}">
                             <span class="fa fa-tags"/>
-                            <a class="label label-default" th:each="s:${article.tags}" th:text="${s}" th:onclick="'filterTag(\''+${s}+'\')'"></a>
+                            <a class="label label-default" th:each="s:${article.tags}" th:text="${s}"
+                               th:onclick="'filterTag(\''+${s}+'\')'"></a>
                         </label>
                     </div>
                     <div th:style="${isMaster}?'float: right':'display: none'">
@@ -108,6 +110,7 @@
 
             <div class="col-md-12 article-content message-board">
                 <div class="col-md-12">
+                    <input hidden="hidden" id="uid" th:value="${uuid}"/>
                     <span class="fa fa-book"> 留言板</span>
                     <hr/>
                     <ul th:if="${not #lists.isEmpty(commentVos)}" th:each="c,i:${commentVos}">
@@ -127,12 +130,22 @@
                     </ul>
                 </div>
                 <div class="col-md-12">
+                    <!--<div id="msg-bar" class="toolbar"/>-->
                     <div class="col-md-12">
                         <textarea id="msg-area" style="width: 100%;height: 200px"/>
                     </div>
                     <div class="col-md-12">
+                        <div class="col-md-7">
+                            <span style="line-height: 30px">点击图标快速登录：</span>
+                            <a id="githubAuthorizationUrl" href="" ><img src="/img/qq.png" /></a>
+                            <a id="qqAuthorizationUrl" href="" ><img src="/img/git.png" /></a>
+
+                        </div>
+                        <div class="col-md-5">
+                            <span id="msg-tops" hidden="hidden" style="line-height: 30px;color: red">少年郎，登录之后，方可留言！</span>
                         <a class="btn btn-default" style="float: right"
-                           th:onclick="'saveMsg(\''+${article.recid}+'\')'">提交</a>
+                               th:onclick="'saveMsg(\''+${article.recid}+'\')'">提交</a>
+                        </div>
                     </div>
                 </div>
 
@@ -145,5 +158,8 @@
     </div>
 </div>
 <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" zIndex="-1" count="200"/>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

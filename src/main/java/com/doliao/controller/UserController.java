@@ -52,6 +52,8 @@ public class UserController {
                 //已登录标记 如果是博主的
                 if (userVo.getUsername().equals("admin")) {
                     request.getSession().setAttribute(Constant.MASTER, Constant.MASTER_MARK);
+                    // 如果为博主，那么返回跳转的时候给出提示
+                    messageVo.setData("master");
                 }
                 // uid
                 request.getSession().setAttribute(Constant.UUID, valUser.getRecid());

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doliao.mapper.ArticleMsgPoMapper">
+  <resultMap id="BaseResultMap" type="com.doliao.po.ArticleMsgPo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="recid" jdbcType="INTEGER" property="recid" />
+    <result column="msgid" jdbcType="INTEGER" property="msgid" />
+    <result column="articleid" jdbcType="INTEGER" property="articleid" />
+  </resultMap>
+</mapper>

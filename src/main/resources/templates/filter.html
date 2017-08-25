@@ -41,19 +41,6 @@
             </div>
             <div class="tag-content">
                 <div class="panel-heading tag-title">
-                    <span>日期归档</span><a class="fa fa-bars" style="float: right"/>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <li th:each="o:${fileVos}">
-                            <a th:onclick="'filterTime(\''+${o.filetime}+'\')'"
-                               th:text="${o.filetime}+' ('+ ${o.num}+')'"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="tag-content">
-                <div class="panel-heading tag-title">
                     <span>标签</span>
                 </div>
                 <div class="panel-body">
@@ -61,6 +48,19 @@
                         <li th:each="o:${tagVos}">
                             <a class="label label-default" th:onclick="'filterTag(\''+${o.name}+'\')'"
                                th:text="${o.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tag-content">
+                <div class="panel-heading tag-title">
+                    <span>日期归档</span><a class="fa fa-bars" style="float: right"/>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li th:each="o:${fileVos}">
+                            <a th:onclick="'filterTime(\''+${o.filetime}+'\')'"
+                               th:text="${o.filetime}+' ('+ ${o.num}+')'"></a>
                         </li>
                     </ul>
                 </div>
@@ -76,8 +76,8 @@
                         <td class="col-md-1" style="text-align: center">
                             <span class="fa fa-chevron-circle-right"/>
                         </td>
-                        <td class="col-md-8 "><span th:text="${o.title}"></span></td>
-                        <td class="col-md-3 ">
+                        <td class="col-md-7 "><span th:text="${o.title}"></span></td>
+                        <td class="col-md-4 ">
                             <span class="fa fa-calendar"/> <label th:text="${o.createtime}"/>
                         </td>
                     </tr>

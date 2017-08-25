@@ -1,22 +1,27 @@
 package com.doliao.controller;
 
 import com.doliao.constant.Constant;
+import com.doliao.po.ArticleMsgPo;
+import com.doliao.po.CommentPo;
 import com.doliao.service.ArticleService;
 import com.doliao.service.CommentService;
 import com.doliao.service.TagService;
 import com.doliao.service.TypeService;
 import com.doliao.vo.*;
 import com.utils.ConvertUtil;
+import com.utils.DateUtil;
 import com.utils.JacksonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,5 +102,30 @@ public class ArticleController {
         modelMap.put("userinfo", request.getSession().getAttribute(Constant.USER_INFO));
 
         return "article";
+    }
+
+
+    @RequestMapping(value = "/remsg")
+    @ResponseBody
+    public MessageVo articleMsg(CommentVo commentVo, Integer articleid) {
+        MessageVo messageVo = new MessageVo();
+        CommentPo commentPo = (CommentPo) ConvertUtil.convertDtoAndVo(commentVo, CommentPo.class);
+        commentPo.setCreatetime(DateUtil.formatDate(new Date()));
+        int msgId = commentService.insertCommentRecId(commentPo);
+        if (msgId < 0) {
+            messageVo.setCode(Constant.ERROR_CODE);
+            messageVo.setMsg("插入错误，请联系管理员");
+            return messageVo;
+        }
+        ArticleMsgPo articleMsgPo = new ArticleMsgPo();
+        articleMsgPo.setMsgid(msgId);
+        articleMsgPo.setArticleid(articleid);
+        if (commentService.insertArticleMsg(articleMsgPo) > 0) {
+            messageVo.setCode(Constant.SUCCESS_CODE);
+            return messageVo;
+        }
+        messageVo.setCode(Constant.ERROR_CODE);
+        messageVo.setMsg("插入错误，请联系管理员");
+        return messageVo;
     }
 }

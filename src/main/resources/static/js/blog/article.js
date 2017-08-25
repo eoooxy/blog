@@ -19,8 +19,19 @@ function msgTop(name) {
 }
 
 function saveMsg(recid) {
-    alert("施工中……")
-    // alert(recid);
+    var msgInfo = $("#msg-area").val();
+    var userid = $("#uid").val();
+    alert(msgInfo + "---" + userid);
+    if (userid == null || userid == "") {
+        $("#msg-tops").show();
+        return false;
+    }
+    var data = {"msg": msgInfo, "articleid": recid, "userid": userid};
+    doliao.ajax("post", "/remsg", data, function (o) {
+        if (!doliao.isEmpty(o) && doliao.isEqual(o.code, 100)) {
+            window.location.reload();
+        }
+    }, "json")
 }
 
 function filterType(keywords) {

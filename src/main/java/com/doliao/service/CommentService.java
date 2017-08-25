@@ -1,5 +1,7 @@
 package com.doliao.service;
 
+import com.doliao.po.ArticleMsgPo;
+import com.doliao.po.CommentPo;
 import com.doliao.vo.CommentVo;
 
 import java.util.List;
@@ -11,4 +13,8 @@ import java.util.List;
 public interface CommentService {
 
     List<CommentVo> getCommentList(Integer articleid);
+
+    int insertCommentRecId(CommentPo commentPo);
+
+    int insertArticleMsg(ArticleMsgPo articleMsgPo);
 }

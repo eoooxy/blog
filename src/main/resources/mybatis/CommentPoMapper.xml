@@ -27,6 +27,6 @@ WHERE
 			t3.articleid != #{articleid,jdbcType=INTEGER}
 		)
 ORDER BY
-	t1.createtime DESC
+	t1.createtime ASC
     </select>
 </mapper>

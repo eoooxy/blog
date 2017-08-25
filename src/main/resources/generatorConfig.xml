@@ -52,28 +52,32 @@
         </table>
        -->
 
-        <table tableName="blog_article" domainObjectName="ArticlePo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_links" domainObjectName="LinksPo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_msg" domainObjectName="CommentPo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_type" domainObjectName="TypePo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_user" domainObjectName="UserPo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_tag" domainObjectName="TagPo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_article_tag" domainObjectName="ArticleTagPo">
-            <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="blog_article_type" domainObjectName="ArticleTypePo">
+        <!--<table tableName="blog_article" domainObjectName="ArticlePo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_links" domainObjectName="LinksPo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_msg" domainObjectName="CommentPo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_type" domainObjectName="TypePo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_user" domainObjectName="UserPo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_tag" domainObjectName="TagPo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_article_tag" domainObjectName="ArticleTagPo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="blog_article_type" domainObjectName="ArticleTypePo">-->
+            <!--<generatedKey column="recid" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <table tableName="blog_article_msg" domainObjectName="ArticleMsgPo">
             <generatedKey column="recid" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

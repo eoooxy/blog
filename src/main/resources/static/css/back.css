@@ -1,6 +1,7 @@
 body, html {
-    background-color: #ccc;
+    background-color: #888;
     font-family: Ayuthaya;
+    opacity:0.9;
 }
 
 .body-content {

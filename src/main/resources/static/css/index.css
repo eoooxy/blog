@@ -1,6 +1,8 @@
 body, html {
-    background-color: #ccc;
+    background-color: #888;
+    /*background-image:url(/img/bg.jpg);*/
     font-family: Ayuthaya;
+    opacity: 0.9;
 }
 
 .body-content {
@@ -22,6 +24,7 @@ body, html {
 }
 
 .tag-content {
+
     border-radius: 10px;
     background-color: #fff;
     margin-top: 25px;
@@ -128,7 +131,6 @@ body, html {
     background: none;
 }
 
-
-#filter-table tr{
+#filter-table tr {
     cursor: pointer;
 }
